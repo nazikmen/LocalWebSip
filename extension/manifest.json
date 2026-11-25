@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "LocalWebSip development mock bridge",
+  "version": "1.0.0",
+  "description": "Development-only bridge to the LocalWebSip mock native host.",
+  "permissions": ["nativeMessaging", "storage"],
+  "host_permissions": ["https://*/*"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    { "matches": ["https://*/*"], "js": ["content.js"], "run_at": "document_start", "all_frames": false }
+  ],
+  "options_page": "options.html"
+}
