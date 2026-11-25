@@ -9,7 +9,8 @@ not a security boundary against scripts running on that origin.
 1. Load `extension/` as an unpacked Manifest V3 extension in Chrome or Edge and
    copy its extension ID. The development host requires Node.js.
 2. On Windows, from the repository root in PowerShell, register the mock host
-   for that ID using `.\scripts\register-mock-host.ps1 -ExtensionId <extension-id>`.
+   using `.\scripts\register-mock-host.ps1 -ExtensionId 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'`,
+   replacing the example with the copied extension ID.
    The script registers `com.localwebsip.mock` for the current user in Chrome
    and Edge. On other platforms, register the native-host manifest and launcher
    manually for your browser, allowing the extension ID. This directory does
