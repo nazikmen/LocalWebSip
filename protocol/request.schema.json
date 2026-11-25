@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://localwebsip.invalid/schema/mock-request-v1.json",
+  "title": "LocalWebSip mock request, version 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "command", "params"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "\\S" },
+    "version": { "const": "1" },
+    "command": {
+      "enum": ["getInfo", "getStatus", "configureAccount", "selectAccount", "register", "unregister", "dial", "answer", "hangup", "reject", "mute", "hold", "getCallState", "getCallHistory"]
+    },
+    "params": { "type": "object" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "command": { "const": "configureAccount" } } },
+      "then": { "properties": { "params": {
+        "type": "object", "additionalProperties": false, "required": ["accountId"],
+        "properties": {
+          "accountId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "\\S" },
+          "displayName": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "\\S" }
+        }
+      } } }
+    },
+    {
+      "if": { "properties": { "command": { "const": "selectAccount" } } },
+      "then": { "properties": { "params": {
+        "type": "object", "additionalProperties": false, "required": ["accountId"],
+        "properties": { "accountId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "\\S" } }
+      } } }
+    },
+    {
+      "if": { "properties": { "command": { "const": "dial" } } },
+      "then": { "properties": { "params": {
+        "type": "object", "additionalProperties": false, "required": ["number"],
+        "properties": { "number": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[+0-9*#-]+$" } }
+      } } }
+    },
+    {
+      "if": { "properties": { "command": { "enum": ["mute", "hold"] } } },
+      "then": { "properties": { "params": {
+        "type": "object", "additionalProperties": false, "required": ["enabled"],
+        "properties": { "enabled": { "type": "boolean" } }
+      } } }
+    },
+    {
+      "if": { "properties": { "command": { "enum": ["getInfo", "getStatus", "register", "unregister", "answer", "hangup", "reject", "getCallState", "getCallHistory"] } } },
+      "then": { "properties": { "params": { "type": "object", "maxProperties": 0 } } }
+    }
+  ]
+}

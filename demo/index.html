@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>LocalWebSip mock demo</title></head>
+<body>
+  <h1>LocalWebSip mock demo</h1>
+  <p>Development only: fake accounts and simulated calls. This is not SIP and is not secure for production.</p>
+  <button id="info" type="button">Get info</button>
+  <button id="configure" type="button">Configure fake account</button>
+  <button id="register" type="button">Register mock</button>
+  <label for="number">Fake number</label>
+  <input id="number" value="5550100" maxlength="128">
+  <button id="dial" type="button">Dial mock</button>
+  <button id="hangup" type="button">Hang up mock</button>
+  <button id="status" type="button">Get status</button>
+  <h2>Responses and events</h2>
+  <pre id="output" aria-live="polite"></pre>
+  <script src="../web-sdk/localwebsip.js"></script>
+  <script src="demo.js"></script>
+</body>
+</html>

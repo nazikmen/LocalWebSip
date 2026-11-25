@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>LocalWebSip mock options</title></head>
+<body>
+  <h1>LocalWebSip development mock</h1>
+  <p>Allow exact HTTPS origins, one per line (for example https://localhost:8443). Default is deny. Only top-level pages can use the bridge.</p>
+  <label for="origins">Allowed origins</label><br>
+  <textarea id="origins" rows="10" cols="55" spellcheck="false"></textarea><br>
+  <button id="save" type="button">Save</button>
+  <p id="status" role="status"></p>
+  <p>This mock is not paired or secure for production. Any script on an allowed origin can use it.</p>
+  <script src="options.js"></script>
+</body>
+</html>
